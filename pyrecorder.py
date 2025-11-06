@@ -3,7 +3,6 @@ import cv2
 import numpy as np
 import mss
 import time
-import sys
 
 def record_screen(filename: str, duration: int, fps: float):
     with mss.mss() as sct:
@@ -13,7 +12,7 @@ def record_screen(filename: str, duration: int, fps: float):
         fourcc = cv2.VideoWriter_fourcc(*"mp4v")
         out = cv2.VideoWriter(filename, fourcc, fps, (width, height))
 
-        print(f"🎥 Recording {duration}s of screen to '{filename}' at {fps} FPS...")
+        print(f"Recording {duration} seconds of screen to '{filename}' at {fps} FPS...")
         start_time = time.time()
 
         try:
@@ -26,7 +25,7 @@ def record_screen(filename: str, duration: int, fps: float):
             print("\nRecording stopped manually.")
         finally:
             out.release()
-            print(f"✅ Saved recording to {filename}")
+            print(f"Saved recording to '{filename}'.")
 
 def main():
     parser = argparse.ArgumentParser(description="Simple screen recorder using OpenCV and MSS.")
@@ -39,7 +38,6 @@ def main():
     )
 
     args = parser.parse_args()
-
     record_screen(args.output, args.duration, args.fps)
 
 if __name__ == "__main__":
