@@ -6,4 +6,5 @@ url = "https://file.io"
 with open(filepath, "rb") as f:
     r = requests.post(url, files={"file": f})
 
-print(r.text)
+# Print using UTF-8 encoding safely
+print(r.text.encode("utf-8", errors="ignore").decode("utf-8"))
